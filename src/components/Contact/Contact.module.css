@@ -1,31 +1,47 @@
 .contact {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; /* Вирівнюємо по верхньому краю */
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #fff;
-  overflow: hidden; /* Запобігаємо переповненню */
+  overflow: hidden;
 }
 
-span {
+.contactInfo {
   font-size: 16px;
   display: flex;
+  flex-direction: column; /* Розміщуємо елементи вертикально */
+  gap: 8px; /* Відстань між ім'ям і номером */
+  max-width: 70%; /* Обмежуємо ширину для текстової частини */
+  overflow: hidden;
+}
+
+.infoRow {
+  display: flex;
   align-items: center;
-  gap: 8px; /* Простір між іконками і текстом */
-  max-width: 70%; /* Обмежуємо ширину текстової частини */
-  white-space: nowrap; /* Запобігаємо перенесенню тексту */
-  overflow: hidden; /* Ховаємо текст, що не вміщається */
-  text-overflow: ellipsis; /* Додаємо три крапки для обрізаного тексту */
+  gap: 8px; /* Простір між іконкою і текстом */
+}
+
+.name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Три крапки для імені */
+}
+
+.number {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Три крапки для номера */
 }
 
 .deleteBtn {
   padding: 5px 10px;
   font-size: 14px;
-  background-color: #f44336; /* Червоний колір за замовчуванням */
-  color: white; /* Білий текст */
+  background-color: #f44336;
+  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -34,5 +50,5 @@ span {
 }
 
 .deleteBtn:hover {
-  background-color: #d32f2f; /* Темніший червоний при ховері */
+  background-color: #d32f2f;
 }

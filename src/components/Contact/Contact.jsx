@@ -12,9 +12,16 @@ export default function Contact({ contact }) {
 
   return (
     <li className={css.contact}>
-      <span>
-        <FaUser /> {contact.name} <FaPhone /> {contact.number}
-      </span>
+      <div className={css.contactInfo}>
+        <div className={css.infoRow}>
+          <FaUser />
+          <span className={css.name}>{contact.name}</span>
+        </div>
+        <div className={css.infoRow}>
+          <FaPhone />
+          <span className={css.number}>{contact.number}</span>
+        </div>
+      </div>
       <button onClick={handleDelete} className={css.deleteBtn}>
         Delete
       </button>
