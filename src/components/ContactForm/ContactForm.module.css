@@ -25,17 +25,17 @@ input {
   margin-top: 5px;
 }
 
-button {
+.submitBtn {
   padding: 10px;
   font-size: 16px;
   background-color: #4caf50; /* Зелений колір за замовчуванням */
-  color: white;
+  color: white; /* Білий текст */
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-button:hover {
+.submitBtn:hover {
   background-color: #45a049; /* Темніший зелений при ховері */
 }

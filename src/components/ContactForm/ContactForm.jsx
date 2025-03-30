@@ -33,7 +33,9 @@ export default function ContactForm() {
         Number
         <input type="tel" name="number" required />
       </label>
-      <button type="submit">Add contact</button>
+      <button type="submit" className={css.submitBtn}>
+        Add contact
+      </button>
     </form>
   );
 }

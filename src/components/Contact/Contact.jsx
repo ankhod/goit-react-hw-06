@@ -15,7 +15,9 @@ export default function Contact({ contact }) {
       <span>
         <FaUser /> {contact.name} <FaPhone /> {contact.number}
       </span>
-      <button onClick={handleDelete}>Delete</button>
+      <button onClick={handleDelete} className={css.deleteBtn}>
+        Delete
+      </button>
     </li>
   );
 }
