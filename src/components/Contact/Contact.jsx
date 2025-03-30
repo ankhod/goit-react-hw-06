@@ -1,20 +1,20 @@
-import { FaUser, FaPhone } from 'react-icons/fa'; // Імпортуємо іконки
-import styles from './Contact.module.css';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contactsSlice';
+import css from './Contact.module.css';
 
-export default function Contact({ id, name, number, onDelete }) {
+export default function Contact({ contact }) {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteContact(contact.id));
+  };
+
   return (
-    <li className={styles.contact}>
-      <div className={styles.info}>
-        <span className={styles.name}>
-          <FaUser className={styles.icon} /> {name}
-        </span>
-        <span className={styles.number}>
-          <FaPhone className={styles.icon} /> {number}
-        </span>
-      </div>
-      <button onClick={() => onDelete(id)} className={styles.delete}>
-        Delete
-      </button>
+    <li className={css.contact}>
+      <span>
+        {contact.name}: {contact.number}
+      </span>
+      <button onClick={handleDelete}>Delete</button>
     </li>
   );
 }
