@@ -1,57 +1,39 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/contactsSlice';
 import { nanoid } from 'nanoid';
-import styles from './ContactForm.module.css';
+import css from './ContactForm.module.css';
 
-const validationSchema = Yup.object({
-  name: Yup.string()
-    .min(3, 'Minimum 3 characters')
-    .max(50, 'Maximum 50 characters')
-    .required('Required'),
-  number: Yup.string()
-    .min(3, 'Minimum 3 characters')
-    .max(50, 'Maximum 50 characters')
-    .required('Required'),
-});
+export default function ContactForm() {
+  const dispatch = useDispatch();
 
-export default function ContactForm({ onAddContact }) {
-  const initialValues = { name: '', number: '' };
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.elements.name.value;
+    const number = form.elements.number.value;
 
-  const handleSubmit = (values, { resetForm }) => {
-    const newContact = {
-      id: nanoid(),
-      name: values.name,
-      number: values.number,
-    };
-    onAddContact(newContact);
-    resetForm();
+    dispatch(
+      addContact({
+        id: nanoid(),
+        name,
+        number,
+      })
+    );
+
+    form.reset();
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      <Form className={styles.form}>
-        <div className={styles.field}>
-          <label htmlFor="name">Name</label>
-          <Field name="name" type="text" />
-          <ErrorMessage name="name" component="span" className={styles.error} />
-        </div>
-        <div className={styles.field}>
-          <label htmlFor="number">Number</label>
-          <Field name="number" type="text" />
-          <ErrorMessage
-            name="number"
-            component="span"
-            className={styles.error}
-          />
-        </div>
-        <button type="submit" className={styles.submit}>
-          Add contact
-        </button>
-      </Form>
-    </Formik>
+    <form className={css.form} onSubmit={handleSubmit}>
+      <label className={css.label}>
+        Name
+        <input type="text" name="name" required />
+      </label>
+      <label className={css.label}>
+        Number
+        <input type="tel" name="number" required />
+      </label>
+      <button type="submit">Add contact</button>
+    </form>
   );
 }
